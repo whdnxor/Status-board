@@ -34,8 +34,10 @@ body {
 }
 
 .btn-vacation { background-color: skyblue; color: #333; }
-.btn-sick { background-color: #90ee90; color: #333; }
+.btn-medical { background-color: #90ee90; color: #333; }
 .btn-duty { background-color: #ff6347; color: #333; }
+.btn-work { background-color: #64b5f6; color: #333; }
+.btn-travel { background-color: #7986cb; color: #333; }
 
 #board {
     display: grid;
@@ -43,7 +45,7 @@ body {
     gap: 15px;
 }
 
-.soldier-card {
+.soldier {
     background: whitesmoke;
     padding: 15px;
     text-align: center;
@@ -55,8 +57,10 @@ body {
 }
 
 .status-vacation { background-color: #fffde7; border-color: skyblue; }
-.status-sick { background-color: #f1f8e9; border-color: #90ee90; }
+.status-medical { background-color: #f1f8e9; border-color: #90ee90; }
 .status-duty { background-color: #ffebee; border-color: #ff6347; }
+.status-work { background-color: #e3f2fd; border-color: #64b5f6; }
+.status-travel { background-color: #e8eaf6; border-color: #7986cb; }
 
 
 .selected {
