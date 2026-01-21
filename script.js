@@ -1,11 +1,18 @@
 let soldiers = [
-    { id: 1, name: "김공군", joinDate: "2024-12-14", status: "present" },
-    { id: 2, name: "이신병", joinDate: "2025-01-20", status: "present" },
+    { id: 1, name: "김공군", joinDate: "2024-05-14", status: "present" },
+    { id: 2, name: "이상병", joinDate: "2025-01-20", status: "present" },
     { id: 3, name: "박정비", joinDate: "2025-03-10", status: "present" },
-    { id: 4, name: "하늘이", joinDate: "2025-09-05", status: "present" }
+    { id: 4, name: "하늘이", joinDate: "2025-09-05", status: "present" },
+    { id: 5, name: "최신병", joinDate: "2026-01-10", status: "present" }
 ];
 
 let selectedID = null;
+
+function addSoldier(name, joinDateStr) {
+    const newID = Date.now();
+    soldiers.push({ id: newID, name: name, joinDate: joinDateStr, status: "present" });
+    renderBoard();
+}
 
 function getNextMonthFirstDay(date, monthsToAdd) {
     const targetDate = new Date(date);
