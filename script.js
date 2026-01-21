@@ -27,9 +27,9 @@ function getRank(joinDateStr) {
     if (today > dischargeDate) {
         return null;
     }
-    const pfcDate = getPromotionDate(joinDate, 2);
-    const cplDate = getPromotionDate(joinDate, 8);
-    const sgtDate = getPromotionDate(joinDate, 14);
+    const pfcDate = getNextMonthFirstDay(joinDate, 2);
+    const cplDate = getNextMonthFirstDay(joinDate, 8);
+    const sgtDate = getNextMonthFirstDay(joinDate, 14);
 
     let rank = "이병";
     if (today >= sgtDate) rank = "병장";
@@ -47,7 +47,7 @@ function renderBoard() {
     activeSoldiers.forEach(soldiers => {
         const rank = getRank(soldiers.joinDate);
         const card = document.createElement('div');
-        let classString = 'soldier status - ${soldiers.status}';
+        let classString = `soldier status-${soldiers.status}`;
         if (soldiers.id === selectedID) {
             classString += ' selected';
         }
