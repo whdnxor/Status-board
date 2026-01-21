@@ -14,13 +14,17 @@ body {
 }
 
 .controls {
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 .btn {
     padding : 10px 20px;
-    margin: 0 5px;
     border: none;
     background-color: white;
     cursor: pointer;
