@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang = "ko">  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공군 현황판</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>통신반 현황판</h1>
+        <div class="controls">
+            <button class="btn btn-present" onclick="applyStatus('present')"> 재실 </button>
+            <button class="btn btn-vacation" onclick="applyStatus('vacation')"> 휴가 </button>
+            <button class="btn btn-duty" onclick="applyStatus('duty off')"> 당직 휴무 </button> 
+            <button class="btn btn-work" onclick="applyStatus('work')"> 작업 </button>
+            <button class="btn btn-medical" onclick="applyStatus('medical')"> 외진 </button>
+            <button class="btn btn-travel" onclick="applyStatus('travel')"> 출장 </button>
+        </div>
+        <div id="board"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
