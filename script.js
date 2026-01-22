@@ -6,11 +6,25 @@ let soldiers = [
     { id: 5, name: "최신병", joinDate: "2026-01-10", status: "present" }
 ];
 
+let officers = [
+    { id: 6, name: "안반장", rank: "상사", status: "present" },
+    { id: 7, name: "김중사", rank: "중사", status: "present" },
+    { id: 8, name: "최중사", rank: "중사", status: "present" },
+    { id: 9, name: "박하사", rank: "하사", status: "present" },
+    { id: 10, name: "조하사", rank: "하사", status: "present" }
+];
+
 let selectedID = null;
 
 function addSoldier(name, joinDateStr) {
     const newID = Date.now();
     soldiers.push({ id: newID, name: name, joinDate: joinDateStr, status: "present" });
+    renderBoard();
+}
+
+function addOfficer(name, rank) {
+    const newID = Date.now();
+    officers.push({ id: newID, name: name, rank: rank, status: "present" });
     renderBoard();
 }
 
@@ -49,35 +63,66 @@ function getRank(joinDateStr) {
 function renderBoard() {
     const board = document.getElementById('board');
     board.innerHTML = '';
-    const activeSoldiers = soldiers.filter(soldier => {return getRank(soldier.joinDate) !== null;});
+    const activeSoldiers = soldiers.filter(soldier => { return getRank(soldier.joinDate) !== null; });
 
-    activeSoldiers.forEach(soldiers => {
-        const rank = getRank(soldiers.joinDate);
+    const officerContainer = document.createElement('div');
+    officerContainer.className = 'officer-container';
+
+    const soldierContainer = document.createElement('div');
+    soldierContainer.className = 'soldier-container';
+
+    const separator = document.createElement('div');
+    separator.className = 'separator';
+    
+    officers.forEach(officer => {
         const card = document.createElement('div');
-        let classString = `soldier status-${soldiers.status}`;
-        if (soldiers.id === selectedID) {
+        let classString = `officer status-${officer.status}`;
+        if (officer.id === selectedID) {
+            classString += ' selected';
+        }
+        card.className = classString;
+
+        card.innerHTML = `
+            <div class="rank">${officer.rank}</div>
+            <div class="name">${officer.name}</div>
+        `;
+
+        card.onclick = () => {
+            selectedID = (selectedID === officer.id) ? null : officer.id;
+            renderBoard();
+        };
+        officerContainer.appendChild(card);
+    });
+
+    activeSoldiers.forEach(soldier => {
+        const rank = getRank(soldier.joinDate);
+        const card = document.createElement('div');
+        let classString = `soldier status-${soldier.status}`;
+        if (soldier.id === selectedID) {
             classString += ' selected';
         }
         card.className = classString;
 
         card.innerHTML = `
             <div class="rank">${rank}</div>
-            <div class="name">${soldiers.name}</div>
+            <div class="name">${soldier.name}</div>
         `;
 
         card.onclick = () => {
-            selectedID = (selectedID === soldiers.id) ? null : soldiers.id;
+            selectedID = (selectedID === soldier.id) ? null : soldier.id;
             renderBoard();
         };
-        board.appendChild(card);
-
+        soldierContainer.appendChild(card);
     });
+    board.appendChild(officerContainer);
+    board.appendChild(separator);
+    board.appendChild(soldierContainer);
 }
 
 function applyStatus(newStatus) {
-    const soldier = soldiers.find(s => s.id === selectedID);
-    if (soldier) {
-        soldier.status = newStatus;
+    const member = soldiers.find(s => s.id === selectedID) || officers.find(s => s.id === selectedID);
+    if (member) {
+        member.status = newStatus;
         selectedID = null;
         renderBoard();
     }
