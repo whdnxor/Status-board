@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공군 현황판</title>
+    <title>통신반 현황판</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -24,6 +24,7 @@
     <div class="footer">
         <button class="btn btn-add" onclick="addSoldier(prompt('이름을 입력하세요:'), prompt('입대일을 입력하세요 (YYYY-MM-DD):'))"> 신병 추가 </button>
         <button class="btn btn-add" onclick="addOfficer(prompt('이름을 입력하세요:'), prompt('계급을 입력하세요:'))"> 간부 추가 </button>
+        <button class="btn btn-delete" onclick="deleteMember()"> 인원 삭제 </button>
     </div>
     <script src="script.js"></script>
 </body>
