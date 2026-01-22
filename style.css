@@ -24,7 +24,7 @@ body {
 }
 
 .btn {
-    padding : 10px 20px;
+    padding: 10px 20px;
     border: none;
     background-color: white;
     cursor: pointer;
@@ -37,16 +37,66 @@ body {
     transform: translateY(-2px);
 }
 
-.btn-vacation { background-color: skyblue; color: #333; }
-.btn-medical { background-color: #90ee90; color: #333; }
-.btn-duty { background-color: #ff6347; color: #333; }
-.btn-work { background-color: #64b5f6; color: #333; }
-.btn-travel { background-color: #7986cb; color: #333; }
+.btn-vacation {
+    background-color: skyblue;
+    color: #333;
+}
+
+.btn-medical {
+    background-color: #90ee90;
+    color: #333;
+}
+
+.btn-duty {
+    background-color: #ff6347;
+    color: #333;
+}
+
+.btn-work {
+    background-color: #64b5f6;
+    color: #333;
+}
+
+.btn-travel {
+    background-color: #7986cb;
+    color: #333;
+}
 
 #board {
+    display: block;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+}
+
+.board_section {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 15px;
+}
+
+.officer-container, .soldier-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+}
+
+.separator {
+    width: 100%;
+    height: 3px;
+    background-color: #ddd;
+    margin: 30px 0;
+    border-radius: 2px;
+}
+
+.officer {
+    background: whitesmoke;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: 0.2s;
+    border: 2px solid transparent;
 }
 
 .soldier {
@@ -54,17 +104,31 @@ body {
     padding: 15px;
     text-align: center;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: 0.2s;
     border: 2px solid transparent;
 }
 
-.status-vacation { background-color: skyblue; }
-.status-medical { background-color: #90ee90; }
-.status-duty { background-color: #ff6347; }
-.status-work { background-color: #64b5f6; }
-.status-travel { background-color: #7986cb; }
+.status-vacation {
+    background-color: skyblue;
+}
+
+.status-medical {
+    background-color: #90ee90;
+}
+
+.status-duty {
+    background-color: #ff6347;
+}
+
+.status-work {
+    background-color: #64b5f6;
+}
+
+.status-travel {
+    background-color: #7986cb;
+}
 
 
 .selected {
@@ -73,5 +137,13 @@ body {
     transform: scale(1.05);
 }
 
-.rank { font-size: 1.2em; font-weight: bold; color: #333; }
-.name { color: #333; margin-top: 5px; }
+.rank {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+.name {
+    color: #333;
+    margin-top: 5px;
+}
