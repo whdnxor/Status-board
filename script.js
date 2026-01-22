@@ -1,4 +1,7 @@
-let soldiers = [
+const storedSoldiers = localStorage.getItem('soldiers');
+const storedOfficers = localStorage.getItem('officers');
+
+let soldiers = storedSoldiers ? JSON.parse(storedSoldiers) : [
     { id: 1, name: "김공군", joinDate: "2024-05-14", status: "present" },
     { id: 2, name: "이상병", joinDate: "2025-01-20", status: "present" },
     { id: 3, name: "박정비", joinDate: "2025-03-10", status: "present" },
@@ -6,7 +9,7 @@ let soldiers = [
     { id: 5, name: "최신병", joinDate: "2026-01-10", status: "present" }
 ];
 
-let officers = [
+let officers = storedOfficers ? JSON.parse(storedOfficers) : [
     { id: 6, name: "안반장", rank: "상사", status: "present" },
     { id: 7, name: "김중사", rank: "중사", status: "present" },
     { id: 8, name: "최중사", rank: "중사", status: "present" },
@@ -16,16 +19,51 @@ let officers = [
 
 let selectedID = null;
 
+function saveData() {
+    localStorage.setItem('soldiers', JSON.stringify(soldiers));
+    localStorage.setItem('officers', JSON.stringify(officers));
+}
+
 function addSoldier(name, joinDateStr) {
+    if (!name || !joinDateStr) {
+        alert("이름과 입대일을 모두 입력해주세요.");
+        return;
+    }
     const newID = Date.now();
     soldiers.push({ id: newID, name: name, joinDate: joinDateStr, status: "present" });
+    saveData();
     renderBoard();
 }
 
 function addOfficer(name, rank) {
+    if (!name || !rank) {
+        alert("이름과 계급을 모두 입력해주세요.");
+        return;
+    }
     const newID = Date.now();
     officers.push({ id: newID, name: name, rank: rank, status: "present" });
+    saveData();
     renderBoard();
+}
+
+function deleteMember() {
+    if (!selectedID) {
+        alert("삭제할 인원을 먼저 선택해주세요.");
+        return;
+    }
+
+    if (confirm("정말 삭제하시겠습니까?")) {
+        const initialSoldierCount = soldiers.length;
+        soldiers = soldiers.filter(s => s.id !== selectedID);
+
+        if (soldiers.length === initialSoldierCount) {
+            officers = officers.filter(o => o.id !== selectedID);
+        }
+
+        selectedID = null;
+        saveData();
+        renderBoard();
+    }
 }
 
 function getNextMonthFirstDay(date, monthsToAdd) {
@@ -124,6 +162,7 @@ function applyStatus(newStatus) {
     if (member) {
         member.status = newStatus;
         selectedID = null;
+        saveData();
         renderBoard();
     }
 }
